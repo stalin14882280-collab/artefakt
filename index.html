@@ -3,65 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DevPortfolio | Услуги программирования</title>
+    <title>artefakt | Разработка и программирование</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Размытый фон с кодом и командами -->
+    <!-- Плавающие световые пятна для эффекта преломления Liquid Glass -->
+    <div class="liquid-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <!-- Крупный размытый фон с постоянно печатающимся кодом -->
     <div id="code-bg" class="blurred-bg"></div>
 
     <!-- Основной контент сайта -->
     <div class="container">
-        <header>
-            <div class="logo">&lt;DEV /&gt;</div>
+        <header class="glass-panel fade-in">
+            <div class="logo">&lt;artefakt /&gt;</div>
             <nav>
                 <a href="#about">Обо мне</a>
                 <a href="#services">Услуги</a>
-                <a href="#contact" class="btn-outline">Заказать</a>
+                <a href="https://t.me" target="_blank" class="btn-outline">Telegram: @intwf</a>
             </nav>
         </header>
 
         <main>
-            <section id="about" class="hero">
-                <h1>Разработка софта и веб-решений под ключ</h1>
-                <p>Пишу чистый, масштабируемый и надёжный код. Помогаю бизнесу автоматизировать процессы, создавать веб-приложения и запускать сложные IT-продукты.</p>
-                <a href="#contact" class="btn-primary">Обсудить проект</a>
+            <section id="about" class="hero reveal">
+                <div class="badge glass-panel">Доступен для заказов</div>
+                <h1>Привет, я <span class="highlight">artefakt</span>.<br>Создаю код, который работает.</h1>
+                <p>Разработка современных веб-приложений, серверной архитектуры, сложных ботов и автоматизации под ключ. Чистый код, высокая скорость и внимание к деталям.</p>
+                <div class="hero-actions">
+                    <a href="https://t.me" target="_blank" class="btn-primary">Написать в Telegram (@intwf)</a>
+                    <a href="#services" class="btn-secondary">Смотреть услуги</a>
+                </div>
             </section>
 
             <section id="services" class="services">
-                <h2>Мои услуги</h2>
+                <h2 class="reveal">Услуги разработки</h2>
                 <div class="cards">
-                    <div class="card">
+                    <div class="card glass-panel reveal">
+                        <div class="card-num">01</div>
                         <h3>Веб-разработка</h3>
-                        <p>Создание современных сайтов, лендингов и сложных SPA-приложений с высокой скоростью загрузки.</p>
+                        <p>Сайты, лендинги и сложные SPA-интерфейсы с современной анимацией, адаптивностью и высокой скоростью загрузки.</p>
                     </div>
-                    <div class="card">
+                    <div class="card glass-panel reveal">
+                        <div class="card-num">02</div>
                         <h3>Backend и API</h3>
-                        <p>Проектирование серверной логики, баз данных, интеграция платёжных систем и сторонних сервисов.</p>
+                        <p>Проектирование надёжной серверной логики, баз данных, REST/WebSocket API и интеграция сторонних сервисов.</p>
                     </div>
-                    <div class="card">
+                    <div class="card glass-panel reveal">
+                        <div class="card-num">03</div>
                         <h3>Боты и автоматизация</h3>
-                        <p>Разработка Telegram-ботов, парсеров данных и скриптов для автоматизации рутинных бизнес-задач.</p>
+                        <p>Telegram-боты любой сложности, парсеры данных, нейросетевые интеграции и скрипты для автоматизации рутины.</p>
                     </div>
                 </div>
             </section>
 
-            <section id="contact" class="contact">
-                <h2>Связаться со мной</h2>
-                <p>Оставьте заявку, и я свяжусь с вами для оценки сроков и стоимости.</p>
-                <form id="contact-form">
-                    <input type="text" id="name" placeholder="Ваше имя" required>
-                    <input type="text" id="contact-info" placeholder="Telegram (@username) или Email" required>
-                    <textarea id="task" rows="4" placeholder="Кратко опишите вашу задачу..." required></textarea>
-                    <button type="submit" class="btn-primary">Отправить заявку</button>
-                </form>
-                <div id="form-status" class="status-msg"></div>
+            <section id="contact" class="contact reveal">
+                <div class="contact-box glass-panel">
+                    <h2>Обсудить проект</h2>
+                    <p>Оставьте заявку здесь или напишите мне напрямую в Telegram: <a href="https://t.me" target="_blank" class="tg-link">@intwf</a></p>
+                    <form id="contact-form">
+                        <input type="text" id="name" placeholder="Ваше имя" required>
+                        <input type="text" id="contact-info" placeholder="Ваш Telegram (@username) для связи" required>
+                        <textarea id="task" rows="4" placeholder="Опишите идею или задачу..." required></textarea>
+                        <div class="form-buttons">
+                            <button type="submit" class="btn-primary">Отправить заявку</button>
+                            <a href="https://t.me" target="_blank" class="btn-outline">Открыть чат с @intwf</a>
+                        </div>
+                    </form>
+                    <div id="form-status" class="status-msg"></div>
+                </div>
             </section>
         </main>
 
-        <footer>
-            <p>&copy; 2026 Все права защищены. Создано с помощью чистого кода.</p>
+        <footer class="reveal">
+            <p>&copy; 2026 <strong>artefakt</strong>. Связь: <a href="https://t.me" target="_blank">@intwf</a></p>
         </footer>
     </div>
 
