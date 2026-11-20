@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevPortfolio | Услуги программирования</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Размытый фон с кодом и командами -->
+    <div id="code-bg" class="blurred-bg"></div>
+
+    <!-- Основной контент сайта -->
+    <div class="container">
+        <header>
+            <div class="logo">&lt;DEV /&gt;</div>
+            <nav>
+                <a href="#about">Обо мне</a>
+                <a href="#services">Услуги</a>
+                <a href="#contact" class="btn-outline">Заказать</a>
+            </nav>
+        </header>
+
+        <main>
+            <section id="about" class="hero">
+                <h1>Разработка софта и веб-решений под ключ</h1>
+                <p>Пишу чистый, масштабируемый и надёжный код. Помогаю бизнесу автоматизировать процессы, создавать веб-приложения и запускать сложные IT-продукты.</p>
+                <a href="#contact" class="btn-primary">Обсудить проект</a>
+            </section>
+
+            <section id="services" class="services">
+                <h2>Мои услуги</h2>
+                <div class="cards">
+                    <div class="card">
+                        <h3>Веб-разработка</h3>
+                        <p>Создание современных сайтов, лендингов и сложных SPA-приложений с высокой скоростью загрузки.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Backend и API</h3>
+                        <p>Проектирование серверной логики, баз данных, интеграция платёжных систем и сторонних сервисов.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Боты и автоматизация</h3>
+                        <p>Разработка Telegram-ботов, парсеров данных и скриптов для автоматизации рутинных бизнес-задач.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contact" class="contact">
+                <h2>Связаться со мной</h2>
+                <p>Оставьте заявку, и я свяжусь с вами для оценки сроков и стоимости.</p>
+                <form id="contact-form">
+                    <input type="text" id="name" placeholder="Ваше имя" required>
+                    <input type="text" id="contact-info" placeholder="Telegram (@username) или Email" required>
+                    <textarea id="task" rows="4" placeholder="Кратко опишите вашу задачу..." required></textarea>
+                    <button type="submit" class="btn-primary">Отправить заявку</button>
+                </form>
+                <div id="form-status" class="status-msg"></div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 Все права защищены. Создано с помощью чистого кода.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
