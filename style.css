@@ -1,0 +1,213 @@
+/* Базовые настройки и сброс стилей */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace; /* Моноширинный шрифт для стиля программиста */
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #080808; /* Глубокий чёрный фон */
+    color: #ffffff;
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* Стили для размытого фона с командами */
+.blurred-bg {
+    position: fixed;
+    top: -5%;
+    left: -5%;
+    width: 110%;
+    height: 110%;
+    z-index: -1;
+    color: rgba(255, 255, 255, 0.35); /* Полупрозрачный белый цвет текста */
+    font-size: 16px;
+    line-height: 1.8;
+    filter: blur(4px); /* Эффект размытия */
+    user-select: none; /* Запрет выделения фонового текста */
+    pointer-events: none;
+    overflow: hidden;
+    white-space: pre-wrap;
+    padding: 20px;
+}
+
+/* Основной контейнер */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Шапка сайта */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+nav a {
+    color: #cccccc;
+    text-decoration: none;
+    margin-left: 25px;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #ffffff;
+}
+
+/* Кнопки */
+.btn-outline {
+    border: 1px solid #ffffff;
+    padding: 8px 18px;
+    color: #ffffff !important;
+}
+
+.btn-outline:hover {
+    background-color: #ffffff;
+    color: #000000 !important;
+}
+
+.btn-primary {
+    display: inline-block;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 14px 28px;
+    text-decoration: none;
+    font-weight: bold;
+    border: 1px solid #ffffff;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 16px;
+}
+
+.btn-primary:hover {
+    background-color: transparent;
+    color: #ffffff;
+}
+
+/* Главный экран (Hero) */
+.hero {
+    padding: 100px 0;
+    max-width: 700px;
+}
+
+.hero h1 {
+    font-size: 42px;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 18px;
+    color: #bbbbbb;
+    margin-bottom: 35px;
+}
+
+/* Секция услуг */
+.services {
+    padding: 60px 0;
+}
+
+.services h2, .contact h2 {
+    font-size: 32px;
+    margin-bottom: 40px;
+    border-left: 4px solid #ffffff;
+    padding-left: 15px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.card {
+    background: rgba(15, 15, 15, 0.85); /* Полупрозрачный чёрный фон карточки */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 30px;
+    backdrop-filter: blur(8px); /* Лёгкое матовое стекло */
+    transition: transform 0.3s, border-color 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: #ffffff;
+}
+
+.card h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.card p {
+    color: #aaaaaa;
+    font-size: 15px;
+}
+
+/* Форма обратной связи */
+.contact {
+    padding: 60px 0 100px;
+    max-width: 600px;
+}
+
+.contact p {
+    color: #bbbbbb;
+    margin-bottom: 25px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 15px;
+    background: rgba(15, 15, 15, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    font-size: 16px;
+    outline: none;
+}
+
+input:focus, textarea:focus {
+    border-color: #ffffff;
+}
+
+.status-msg {
+    margin-top: 15px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+/* Подвал */
+footer {
+    text-align: center;
+    padding: 30px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    color: #777777;
+    font-size: 14px;
+}
+
+/* Адаптивность для телефонов */
+@media (max-width: 600px) {
+    .hero h1 { font-size: 30px; }
+    nav { display: none; } /* Скрываем меню на узких экранах для минимализма */
+}
