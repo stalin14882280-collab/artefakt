@@ -72,7 +72,7 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 revealElements.forEach(el => revealObserver.observe(el));
 
-// Реальная отправка заявки на почту через Web3Forms
+// Реальная отправка заявки на почту через Web3Forms (JSON-формат)
 const contactForm = document.getElementById('contact-form');
 const statusMsg = document.getElementById('form-status');
 const submitBtn = document.getElementById('submit-btn');
@@ -85,19 +85,22 @@ contactForm.addEventListener('submit', async function(e) {
     submitBtn.disabled = true;
     statusMsg.textContent = '';
 
+    // Собираем данные в обычный объект
     const formData = new FormData(contactForm);
-    
-    // Твой личный ключ Web3Forms
-    formData.append("access_key", "70c31c79-4b6c-4103-809a-428754cc581c");
-    
-    // Настройки письма
-    formData.append("subject", "Новая заявка с сайта artefakt!");
-    formData.append("from_name", "Сайт artefakt");
+    const object = Object.fromEntries(formData);
+    object.access_key = "70c31c79-4b6c-4103-809a-428754cc581c";
+    object.subject = "Новая заявка с сайта artefakt!";
+    object.from_name = "Сайт artefakt";
+    const json = JSON.stringify(object);
 
     try {
         const response = await fetch("https://web3forms.com", {
             method: "POST",
-            body: formData
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: json
         });
 
         const result = await response.json();
@@ -106,10 +109,10 @@ contactForm.addEventListener('submit', async function(e) {
             statusMsg.innerHTML = `> Заявка успешно отправлена на почту! Я скоро свяжусь с вами.`;
             contactForm.reset();
         } else {
-            statusMsg.innerHTML = `> Ошибка при отправке. Напишите мне напрямую в Telegram: <a href="https://t.me" target="_blank" style="color:#fff; text-decoration:underline;">@intwf</a>`;
+            statusMsg.innerHTML = `> Ошибка сервера: ${result.message}. Напишите в Telegram: <a href="https://t.me" target="_blank" style="color:#fff; text-decoration:underline;">@intwf</a>`;
         }
     } catch (error) {
-        statusMsg.innerHTML = `> Нет соединения с сервером. Напишите в Telegram: <a href="https://t.me" target="_blank" style="color:#fff; text-decoration:underline;">@intwf</a>`;
+        statusMsg.innerHTML = `> Запрос заблокирован (запустите сайт через Live Server / хостинг или проверьте соединение). Telegram: <a href="https://t.me" target="_blank" style="color:#fff; text-decoration:underline;">@intwf</a>`;
     } finally {
         submitBtn.textContent = originalBtnText;
         submitBtn.disabled = false;
