@@ -1,61 +1,85 @@
-// Список реалистичных команд и строк кода для фона
-const codeSnippets = [
-    "$ git init && git add . && git commit -m 'Initial commit'",
-    "const server = http.createServer((req, res) => { res.writeHead(200); });",
+// Команды и код для непрерывной печати на фоне
+const codeLines = [
+    "$ ssh artefakt@production-server -p 2222",
+    "const artefakt = new Developer({ telegram: '@intwf', status: 'online' });",
     "docker-compose up -d --build --force-recreate",
-    "SELECT users.id, orders.total FROM users JOIN orders ON users.id = orders.user_id;",
-    "npm install express mongoose dotenv cors helmet",
-    "ssh root@192.168.1.1 -p 2222 -i ~/.ssh/id_rsa",
-    "def optimize_algorithm(data): return [x**2 for x in data if x % 2 == 0]",
-    "sudo systemctl restart nginx.service && sudo systemctl status nginx",
-    "export default async function handler(req, res) { await dbConnect(); }",
-    "chmod +x deploy.sh && ./deploy.sh --production",
-    "kubectl get pods --all-namespaces | grep Running",
-    "git push origin main --force-with-lease",
-    "const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET);",
-    "curl -X POST https://service.com -H 'Content-Type: application/json'"
+    "async function deployService(config) { await kubernetes.apply(config); }",
+    "SELECT id, project_name, status FROM orders WHERE developer = 'artefakt';",
+    "git commit -m 'feat: implement liquid glass UI and smooth animations'",
+    "npm run build && systemctl restart nginx.service",
+    "def neural_pipeline(data): return [optimize(x) for x in data]",
+    "curl -X POST https://telegram.org -d 'chat_id=@intwf'",
+    "const socket = new WebSocket('wss://artefakt.dev/stream');",
+    "chmod +x init_cluster.sh && ./init_cluster.sh --workers=8",
+    "export const middleware = (req, res, next) => verifyJWT(req, next);"
 ];
 
-// Функция заполнения фона размытыми командами
-function generateBackgroundCode() {
-    const bgElement = document.getElementById('code-bg');
-    let content = '';
+const bgElement = document.getElementById('code-bg');
+let lineIndex = 0;
+let charIndex = 0;
+let currentText = "";
+
+// Предзаполняем фон несколькими строками, чтобы экран сразу не был пустым
+for (let i = 0; i < 12; i++) {
+    currentText += codeLines[i % codeLines.length] + "\n";
+}
+bgElement.textContent = currentText;
+
+// Функция непрерывной живой печати кода на фоне
+function typeBackgroundCode() {
+    const targetLine = codeLines[lineIndex];
     
-    // Генерируем 80 строк случайных команд с отступами
-    for (let i = 0; i < 80; i++) {
-        const randomSnippet = codeSnippets[Math.floor(Math.random() * codeSnippets.length)];
-        const randomIndent = ' '.repeat(Math.floor(Math.random() * 15));
-        content += `${randomIndent}${randomSnippet}\n`;
+    if (charIndex < targetLine.length) {
+        currentText += targetLine.charAt(charIndex);
+        charIndex++;
+    } else {
+        currentText += "\n";
+        charIndex = 0;
+        lineIndex = (lineIndex + 1) % codeLines.length;
+        
+        // Ограничиваем количество строк в памяти, чтобы браузер не тормозил
+        const linesArray = currentText.split('\n');
+        if (linesArray.length > 28) {
+            currentText = linesArray.slice(linesArray.length - 28).join('\n');
+        }
     }
     
-    bgElement.textContent = content;
+    bgElement.textContent = currentText + "█"; // Мигающий курсор терминала
+    
+    // Случайная скорость печати для реалистичности (от 20 до 55 мс)
+    const typingSpeed = Math.floor(Math.random() * 35) + 20;
+    setTimeout(typeBackgroundCode, typingSpeed);
 }
 
-// Запускаем генерацию фона при загрузке страницы
-generateBackgroundCode();
+// Запускаем печать кода на фоне
+typeBackgroundCode();
 
-// Лёгкое "оживление" фона: каждые 3 секунды обновляем пару строк кода
-setInterval(() => {
-    const bgElement = document.getElementById('code-bg');
-    const lines = bgElement.textContent.split('\n');
-    const randomIndex = Math.floor(Math.random() * lines.length);
-    const randomSnippet = codeSnippets[Math.floor(Math.random() * codeSnippets.length)];
-    const randomIndent = ' '.repeat(Math.floor(Math.random() * 15));
-    
-    lines[randomIndex] = `${randomIndent}${randomSnippet}`;
-    bgElement.textContent = lines.join('\n');
-}, 3000);
+// Плавная анимация появления элементов при прокрутке (Intersection Observer)
+const revealElements = document.querySelectorAll('.reveal');
 
-// Обработка отправки формы
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+            // Добавляем небольшую задержку для каскадного эффекта карточек
+            setTimeout(() => {
+                entry.target.classList.add('active');
+            }, index * 100);
+            revealObserver.unobserve(entry.target);
+        }
+    });
+}, {
+    threshold: 0.12
+});
+
+revealElements.forEach(el => revealObserver.observe(el));
+
+// Обработка формы заявки
 document.getElementById('contact-form').addEventListener('submit', function(e) {
-    e.preventDefault(); // Предотвращаем перезагрузку страницы
+    e.preventDefault();
     
     const name = document.getElementById('name').value;
     const statusMsg = document.getElementById('form-status');
     
-    // Имитация отправки данных
-    statusMsg.textContent = `> Заявка принята, ${name}. Ожидайте ответа в ближайшее время...`;
-    
-    // Очистка полей формы
+    statusMsg.innerHTML = `> Спасибо, <strong>${name}</strong>! Заявка сформирована. Для максимально быстрого ответа продублируйте её мне в Telegram: <a href="https://t.me" target="_blank" style="color:#fff; text-decoration:underline;">@intwf</a>`;
     this.reset();
 });
