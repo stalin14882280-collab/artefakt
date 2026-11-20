@@ -64,14 +64,18 @@
             <section id="contact" class="contact reveal">
                 <div class="contact-box glass-panel">
                     <h2>Обсудить проект</h2>
-                    <p>Оставьте заявку здесь или напишите мне напрямую в Telegram: <a href="https://t.me" target="_blank" class="tg-link">@intwf</a></p>
+                    <p>Оставьте заявку, и она сразу придёт мне на почту, или напишите в Telegram: <a href="https://t.me" target="_blank" class="tg-link">@intwf</a></p>
                     <form id="contact-form">
-                        <input type="text" id="name" placeholder="Ваше имя" required>
-                        <input type="text" id="contact-info" placeholder="Ваш Telegram (@username) для связи" required>
-                        <textarea id="task" rows="4" placeholder="Опишите идею или задачу..." required></textarea>
+                        <!-- Защита от спама (невидимое поле) -->
+                        <input type="checkbox" name="botcheck" style="display: none;">
+                        
+                        <input type="text" id="name" name="name" placeholder="Ваше имя" required>
+                        <input type="text" id="contact-info" name="contact" placeholder="Ваш Telegram (@username) или Email" required>
+                        <textarea id="task" name="message" rows="4" placeholder="Опишите идею или задачу..." required></textarea>
+                        
                         <div class="form-buttons">
-                            <button type="submit" class="btn-primary">Отправить заявку</button>
-                            <a href="https://t.me/intwf" target="_blank" class="btn-outline">Открыть чат с @intwf</a>
+                            <button type="submit" id="submit-btn" class="btn-primary">Отправить заявку</button>
+                            <a href="https://t.me" target="_blank" class="btn-outline">Открыть чат с @intwf</a>
                         </div>
                     </form>
                     <div id="form-status" class="status-msg"></div>
