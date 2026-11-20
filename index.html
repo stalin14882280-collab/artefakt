@@ -8,6 +8,26 @@
 </head>
 <body>
 
+    <!-- Экран капчи при заходе -->
+    <div id="captcha-overlay" class="captcha-overlay">
+        <div class="captcha-box glass-panel">
+            <div class="captcha-header">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="captcha-title">SECURITY CHECK // ARTEFAKT</span>
+            </div>
+            <h2>Проверка на человека</h2>
+            <p id="captcha-question">Реши пример, чтобы войти в систему: <strong id="math-task">7 + 5 = ?</strong></p>
+            
+            <div class="captcha-input-group">
+                <input type="number" id="captcha-answer" placeholder="Ответ..." autocomplete="off">
+                <button id="captcha-submit" class="btn-primary">Войти</button>
+            </div>
+            <div id="captcha-error" class="captcha-error"></div>
+        </div>
+    </div>
+
     <!-- Плавающие световые пятна для эффекта преломления Liquid Glass -->
     <div class="liquid-orbs">
         <div class="orb orb-1"></div>
@@ -25,7 +45,7 @@
             <nav>
                 <a href="#about">Обо мне</a>
                 <a href="#services">Услуги</a>
-                <a href="https://t.me" target="_blank" class="btn-outline">Telegram: @intwf</a>
+                <a href="#contact" class="btn-outline">Контакты</a>
             </nav>
         </header>
 
@@ -63,28 +83,39 @@
 
             <section id="contact" class="contact reveal">
                 <div class="contact-box glass-panel">
-                    <h2>Обсудить проект</h2>
-                    <p>Оставьте заявку, и она сразу придёт мне на почту, или напишите в Telegram: <a href="https://t.me" target="_blank" class="tg-link">@intwf</a></p>
-                    <form id="contact-form">
-                        <!-- Защита от спама (невидимое поле) -->
-                        <input type="checkbox" name="botcheck" style="display: none;">
-                        
-                        <input type="text" id="name" name="name" placeholder="Ваше имя" required>
-                        <input type="text" id="contact-info" name="contact" placeholder="Ваш Telegram (@username) или Email" required>
-                        <textarea id="task" name="message" rows="4" placeholder="Опишите идею или задачу..." required></textarea>
-                        
-                        <div class="form-buttons">
-                            <button type="submit" id="submit-btn" class="btn-primary">Отправить заявку</button>
-                            <a href="https://t.me" target="_blank" class="btn-outline">Открыть чат с @intwf</a>
+                    <h2>Прямые контакты</h2>
+                    <p>Для заказа разработки или обсуждения задачи пиши напрямую в Telegram или на почту. Отвечаю быстро.</p>
+                    
+                    <div class="contact-items">
+                        <div class="contact-row">
+                            <div class="contact-info">
+                                <span class="contact-label">TELEGRAM</span>
+                                <a href="https://t.me" target="_blank" class="contact-value">@intwf</a>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="https://t.me" target="_blank" class="btn-primary btn-sm">Написать</a>
+                                <button class="btn-outline btn-sm copy-btn" data-copy="@intwf">Копировать</button>
+                            </div>
                         </div>
-                    </form>
-                    <div id="form-status" class="status-msg"></div>
+
+                        <div class="contact-row">
+                            <div class="contact-info">
+                                <span class="contact-label">EMAIL ПОЧТА</span>
+                                <a href="mailto:stalin14882280@gmail.com" class="contact-value">stalin14882280@gmail.com</a>
+                            </div>
+                            <div class="contact-actions">
+                                <a href="mailto:stalin14882280@gmail.com" class="btn-primary btn-sm">Письмо</a>
+                                <button class="btn-outline btn-sm copy-btn" data-copy="stalin14882280@gmail.com">Копировать</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="copy-toast" class="copy-toast"></div>
                 </div>
             </section>
         </main>
 
         <footer class="reveal">
-            <p>&copy; 2026 <strong>artefakt</strong>. Связь: <a href="https://t.me/intwf" target="_blank">@intwf</a></p>
+            <p>&copy; 2026 <strong>artefakt</strong>. Telegram: <a href="https://t.me" target="_blank">@intwf</a> | Email: <a href="mailto:stalin14882280@gmail.com">stalin14882280@gmail.com</a></p>
         </footer>
     </div>
 
