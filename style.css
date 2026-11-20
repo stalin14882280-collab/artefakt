@@ -18,6 +18,127 @@ body {
     min-height: 100vh;
 }
 
+body.locked {
+    overflow: hidden;
+}
+
+/* Экран капчи при заходе */
+.captcha-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(5, 5, 5, 0.85);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.captcha-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.captcha-box {
+    max-width: 440px;
+    width: 100%;
+    padding: 35px;
+    text-align: center;
+    animation: popIn 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes popIn {
+    from { opacity: 0; transform: scale(0.9) translateY(20px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.captcha-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 22px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.captcha-header .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.captcha-title {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-left: auto;
+    letter-spacing: 1px;
+}
+
+.captcha-box h2 {
+    font-size: 26px;
+    margin-bottom: 12px;
+}
+
+.captcha-box p {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 16px;
+    margin-bottom: 25px;
+}
+
+.captcha-box strong {
+    display: inline-block;
+    margin-top: 8px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 24px;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 6px 18px;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.captcha-input-group {
+    display: flex;
+    gap: 12px;
+}
+
+.captcha-input-group input {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 50px;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.captcha-error {
+    margin-top: 15px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    color: #ffffff;
+    min-height: 20px;
+}
+
+.shake {
+    animation: shakeAnim 0.4s ease;
+}
+
+@keyframes shakeAnim {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-8px); }
+    75% { transform: translateX(8px); }
+}
+
 /* Плавающие световые пятна для преломления сквозь Liquid Glass */
 .liquid-orbs {
     position: fixed;
@@ -77,10 +198,10 @@ body {
     z-index: -1;
     font-family: 'Courier New', Courier, monospace;
     color: rgba(255, 255, 255, 0.32);
-    font-size: 26px; /* Увеличенный размер шрифта на фоне */
+    font-size: 26px;
     font-weight: bold;
     line-height: 1.7;
-    filter: blur(5px); /* Мягкое размытие */
+    filter: blur(5px);
     user-select: none;
     pointer-events: none;
     overflow: hidden;
@@ -98,11 +219,10 @@ body {
     -webkit-backdrop-filter: blur(22px) saturate(140%);
     border-radius: 28px;
     border: 1px solid rgba(255, 255, 255, 0.18);
-    border-top: 1px solid rgba(255, 255, 255, 0.35); /* Световой блик сверху */
+    border-top: 1px solid rgba(255, 255, 255, 0.35);
     border-left: 1px solid rgba(255, 255, 255, 0.25);
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.2);
 }
-
 /* Контейнер */
 .container {
     max-width: 1080px;
@@ -118,7 +238,7 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 16px 30px;
-    border-radius: 50px !important; /* Полностью скруглённая капсула */
+    border-radius: 50px !important;
     margin-bottom: 40px;
 }
 
@@ -152,7 +272,7 @@ nav a:not(.btn-outline):hover {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50px; /* Максимальное скругление */
+    border-radius: 50px;
     font-weight: 600;
     text-decoration: none;
     cursor: pointer;
@@ -198,6 +318,11 @@ nav a:not(.btn-outline):hover {
     background: #ffffff;
     color: #000000;
     transform: translateY(-2px);
+}
+
+.btn-sm {
+    padding: 10px 20px;
+    font-size: 14px;
 }
 
 /* Главный экран (Hero) */
@@ -289,62 +414,97 @@ nav a:not(.btn-outline):hover {
     font-size: 15px;
 }
 
-/* Форма обратной связи */
+/* Секция контактов */
 .contact {
     padding: 60px 0 80px;
 }
 
 .contact-box {
     padding: 45px;
-    max-width: 680px;
+    max-width: 760px;
     margin: 0 auto;
 }
 
-.contact-box p {
+.contact-box h2 {
+    margin-bottom: 12px;
+}
+
+.contact-box > p {
     color: rgba(255, 255, 255, 0.75);
-    margin-bottom: 28px;
+    margin-bottom: 32px;
 }
 
-.tg-link {
-    color: #ffffff;
-    font-weight: bold;
-    text-decoration: underline;
-}
-
-form {
+.contact-items {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 18px;
 }
 
-input, textarea {
-    width: 100%;
-    padding: 16px 22px;
+.contact-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 26px;
     background: rgba(0, 0, 0, 0.35);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 22px;
-    color: #ffffff;
-    font-size: 15px;
-    outline: none;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 24px;
+    gap: 15px;
+    flex-wrap: wrap;
     transition: border-color 0.3s, background 0.3s;
 }
 
-input:focus, textarea:focus {
-    border-color: rgba(255, 255, 255, 0.7);
-    background: rgba(0, 0, 0, 0.55);
+.contact-row:hover {
+    border-color: rgba(255, 255, 255, 0.45);
+    background: rgba(0, 0, 0, 0.5);
 }
 
-.form-buttons {
+.contact-info {
     display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
-    margin-top: 10px;
+    flex-direction: column;
 }
 
-.status-msg {
-    margin-top: 18px;
-    font-size: 15px;
+.contact-label {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+}
+
+.contact-value {
+    font-size: 19px;
+    font-weight: 700;
     color: #ffffff;
+    text-decoration: none;
+    word-break: break-all;
+}
+
+.contact-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.copy-toast {
+    margin-top: 18px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    color: #ffffff;
+    min-height: 20px;
+    text-align: center;
+}
+
+input {
+    width: 100%;
+    padding: 15px 22px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #ffffff;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+input:focus {
+    border-color: #ffffff;
 }
 
 /* Подвал */
@@ -393,4 +553,7 @@ footer a {
     nav a:not(.btn-outline) { display: none; }
     .contact-box { padding: 28px 20px; }
     .blurred-bg { font-size: 20px; }
+    .contact-row { flex-direction: column; align-items: flex-start; }
+    .contact-actions { width: 100%; }
+    .contact-actions a, .contact-actions button { flex: 1; }
 }
